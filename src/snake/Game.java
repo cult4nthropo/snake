@@ -12,6 +12,7 @@ import java.awt.FontMetrics;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 public class Game extends JPanel implements ActionListener {
 
@@ -31,9 +32,10 @@ public class Game extends JPanel implements ActionListener {
 	private int appleY;
 	private String gameOver = "Game over!";
 	private boolean running;
+	private Timer t;
 
 	// 4= left; 8 = up; 6=right; 2=down;
-	private static int direction;
+	private static int direction = 6;
 
 	public static int getDirection() {
 		return direction;
@@ -59,6 +61,9 @@ public class Game extends JPanel implements ActionListener {
 		}
 
 		running = true;
+		
+		t = new Timer(200, this);
+		t.start();
 
 		spawnApple();
 	}
@@ -73,11 +78,12 @@ public class Game extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (running) {
+			moveSnake();
 			checkApple();
 			checkDeath();
-			moveSnake();
+			
 		}
-		repaintSnake();
+		repaint();
 	}
 
 	private void checkDeath() {
@@ -85,9 +91,14 @@ public class Game extends JPanel implements ActionListener {
 			if (snakeX[0] == snakeX[i] && snakeY[0] == snakeY[i]) {
 				running = false;
 			}
-			if ((snakeY[0] >= height) || (snakeX[0] >= width) || (snakeY[0] <= 0) || (snakeY[0] <= 0)) {
-				running = false;
+			
 			}
+		if ((snakeY[0] >= height) || (snakeX[0] >= width) || (snakeY[0] <= 0) || (snakeY[0] <= 0)) {
+			running = false;
+			
+		}
+		if (!running) {
+			t.stop();
 		}
 
 	}
@@ -141,10 +152,5 @@ public class Game extends JPanel implements ActionListener {
 		default:
 			break;
 		}
-	}
-
-	private void repaintSnake() {
-		
-
 	}
 }
