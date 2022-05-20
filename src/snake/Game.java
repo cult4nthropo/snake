@@ -33,13 +33,21 @@ public class Game extends JPanel implements ActionListener {
 	private boolean running;
 
 	// 4= left; 8 = up; 6=right; 2=down;
-	private int direction;
+	private static int direction;
+
+	public static int getDirection() {
+		return direction;
+	}
+
+	public static void setDirection(int pressedKey) {
+		pressedKey = direction;
+	}
 
 	public Game() {
 		addKeyListener(new SnakeListener());
 		setPreferredSize(new Dimension(width, height));
 		setFocusable(true);
-		setBackground(Color.GREEN);
+		setBackground(Color.LIGHT_GRAY);
 
 		this.apple = new ImageIcon("icons\\apple.png").getImage();
 		this.head = new ImageIcon("icons\\head.png").getImage();
