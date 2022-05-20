@@ -3,11 +3,13 @@ package snake;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-public class Game extends JPanel {
+public class Game extends JPanel implements ActionListener {
 	
 	private int width = 300;
 	private int height = 300;
@@ -16,10 +18,14 @@ public class Game extends JPanel {
 	private Image head;
 	private Image tail;
 	
-	private int tail_amount = 3;
-	private int snake_width = 10;
-	private int snakeX[] = new int[width * height / (snake_width * snake_width)];
-	private int snakeY[] = new int[width * height / (snake_width * snake_width)];
+	private int tailAmount = 3;
+	private int snakeWidth = 10;
+	private int snakeX[] = new int[width * height / (snakeWidth * snakeWidth)];
+	private int snakeY[] = new int[width * height / (snakeWidth * snakeWidth)];
+	
+	private int appleX;
+	private int appleY;
+	private boolean running;
 	
 	public Game() {
 		addKeyListener(new SnakeListener());
@@ -27,19 +33,55 @@ public class Game extends JPanel {
 		setFocusable(true);
 		setBackground(Color.DARK_GRAY);
 		
-		Image apple = new ImageIcon("icons\\apple.png").getImage();
-		Image head = new ImageIcon("icons\\head.png").getImage();
-		Image tail = new ImageIcon("icons\\tail.png").getImage();
+		this.apple = new ImageIcon("icons\\apple.png").getImage();
+		this.head = new ImageIcon("icons\\head.png").getImage();
+		this.tail = new ImageIcon("icons\\tail.png").getImage();
 		
-		for (int i = 0; i < tail_amount; i++) {
+		for (int i = 0; i < tailAmount; i++) {
 			snakeX[i] = 100 - i * 10;
 			snakeY[i] = 50;
 		}
 		
-		gameStart();
+		running = true;
+		
+		spawnApple();
 	}
 
-	private void gameStart() {
+	private void spawnApple() {
+		
+		int random = (int) (Math.random() * 29);
+		appleX = random * snakeWidth;
+		appleY = random * snakeWidth;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (running) {
+			checkApple();
+			checkDeath();
+			moveSnake();
+		}
+		updateSnake();
+	}
+
+	private void checkDeath() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void checkApple() {
+		if (snakeX[0] == appleX && snakeY[0] == appleY) {
+			tailAmount++;
+		}
+		
+	}
+
+	private void moveSnake() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void updateSnake() {
 		// TODO Auto-generated method stub
 		
 	}

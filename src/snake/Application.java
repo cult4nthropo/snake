@@ -13,7 +13,6 @@ public class Application {
 			public void run() {
 				JFrame snake = new Snake();
 				snake.setVisible(true);
-				
 			}
 			
 		});
