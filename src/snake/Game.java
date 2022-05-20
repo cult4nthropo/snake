@@ -35,7 +35,15 @@ public class Game extends JPanel implements ActionListener {
 	private Timer t;
 
 	// 4= left; 8 = up; 6=right; 2=down;
-	public static int direction = 6;
+	private static int direction = 6;
+
+	public static int getDirection() {
+		return direction;
+	}
+
+	public static void setDirection(int direction) {
+		Game.direction = direction;
+	}
 
 	public Game() {
 		addKeyListener(new SnakeListener());
