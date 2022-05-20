@@ -12,4 +12,6 @@ public class Snake extends JFrame{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		}
+	
+	
  }
