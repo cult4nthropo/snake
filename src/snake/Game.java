@@ -33,6 +33,7 @@ public class Game extends JPanel implements ActionListener {
 	private String gameOver = "Game over!";
 	private boolean running;
 	private Timer t;
+	private int difficulty = 1000;
 
 	// 4= left; 8 = up; 6=right; 2=down;
 	private static int direction = 6;
@@ -62,7 +63,7 @@ public class Game extends JPanel implements ActionListener {
 
 		running = true;
 		
-		t = new Timer(200, this);
+		t = new Timer(difficulty, this);
 		t.start();
 
 		spawnApple();
@@ -106,6 +107,7 @@ public class Game extends JPanel implements ActionListener {
 	private void checkApple() {
 		if (snakeX[0] == appleX && snakeY[0] == appleY) {
 			tailAmount++;
+			difficulty -= 100;
 			spawnApple();
 		}
 
