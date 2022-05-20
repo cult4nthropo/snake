@@ -6,7 +6,6 @@ import java.awt.Color;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-import javax.swing.text.AttributeSet.ColorAttribute;
 
 public class Game extends JPanel {
 	
@@ -28,14 +27,10 @@ public class Game extends JPanel {
 		setFocusable(true);
 		setBackground(Color.DARK_GRAY);
 		
-		ImageIcon apple = new ImageIcon("apple.png");
-		ImageIcon head = new ImageIcon("head.png");
-		ImageIcon tail = new ImageIcon("tail.png");
-		/*
-		apple = apple.getImage();
-		head = head.getImage();
-		tail = tail.getImage();
-		*/
+		Image apple = new ImageIcon("icons\\apple.png").getImage();
+		Image head = new ImageIcon("icons\\head.png").getImage();
+		Image tail = new ImageIcon("icons\\tail.png").getImage();
+		
 		for (int i = 0; i < tail_amount; i++) {
 			snakeX[i] = 100 - i * 10;
 			snakeY[i] = 50;
