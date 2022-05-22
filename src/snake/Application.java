@@ -4,7 +4,8 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
-public class Application {
+@SuppressWarnings("serial")
+public class Application extends JFrame{
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -20,3 +21,4 @@ public class Application {
 	}
 
 }
+

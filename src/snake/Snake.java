@@ -2,6 +2,7 @@ package snake;
 
 import javax.swing.JFrame;
 
+@SuppressWarnings("serial")
 public class Snake extends JFrame{
 	public Snake() {
 		add(new Game());
@@ -13,5 +14,5 @@ public class Snake extends JFrame{
 		setLocationRelativeTo(null);
 		}
 	
-	
+
  }

@@ -1,19 +1,20 @@
 package snake;
 
-import java.awt.Dimension;
-import java.awt.Image;
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.Graphics;
-import java.awt.Toolkit;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+@SuppressWarnings("serial")
 public class Game extends JPanel implements ActionListener {
 
 	private int width = 300;
@@ -33,7 +34,7 @@ public class Game extends JPanel implements ActionListener {
 	private String gameOver = "Game over!";
 	private boolean running;
 	private Timer t;
-	private int difficulty = 1000;
+	private int difficulty = 700;
 
 	// 4= left; 8 = up; 6=right; 2=down;
 	private static int direction = 6;
@@ -51,10 +52,14 @@ public class Game extends JPanel implements ActionListener {
 		setPreferredSize(new Dimension(width, height));
 		setFocusable(true);
 		setBackground(Color.LIGHT_GRAY);
-
-		this.apple = new ImageIcon("icons\\apple.png").getImage();
-		this.head = new ImageIcon("icons\\head.png").getImage();
-		this.tail = new ImageIcon("icons\\tail.png").getImage();
+		
+		ImageIcon iconApple = new ImageIcon("images\\apple.png");
+		ImageIcon iconHead = new ImageIcon("images\\head.png");
+		ImageIcon iconTail = new ImageIcon("images\\tail.png");
+		
+		this.apple = iconApple.getImage();
+		this.head = iconHead.getImage();
+		this.tail = iconTail.getImage();
 
 		for (int i = 0; i < tailAmount; i++) {
 			snakeX[i] = 100 - i * 10;
@@ -94,7 +99,7 @@ public class Game extends JPanel implements ActionListener {
 			}
 			
 			}
-		if ((snakeY[0] >= height) || (snakeX[0] >= width) || (snakeY[0] <= 0) || (snakeY[0] <= 0)) {
+		if ((snakeY[0] > height) || (snakeX[0] > width) || (snakeY[0] < 0) || (snakeY[0] < 0)) {
 			running = false;
 			
 		}
@@ -107,7 +112,7 @@ public class Game extends JPanel implements ActionListener {
 	private void checkApple() {
 		if (snakeX[0] == appleX && snakeY[0] == appleY) {
 			tailAmount++;
-			difficulty -= 100;
+			difficulty -= 300;
 			spawnApple();
 		}
 
